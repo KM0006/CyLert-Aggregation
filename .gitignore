@@ -2,5 +2,4 @@
 __pycache__/
 
 # test files
-test.py
-test.ipynb
+test*
