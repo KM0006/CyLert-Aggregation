@@ -1,0 +1,6 @@
+# __pycache__ folders
+__pycache__/
+
+# test files
+/test.py
+/test.ipynb
