@@ -1,5 +1,8 @@
 # __pycache__ folders
 __pycache__/
 
+# Dataset folders
+Datasets/
+
 # test files
 test*
