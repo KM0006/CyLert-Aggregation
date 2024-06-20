@@ -1,12 +1,8 @@
 
-from Utils.OnCallLibs import JsonLib 
-from Preprocessing.IDataReader import IDataReader
+from Utils.OnCallLibs import JsonLib
+from Preprocessing.DataLoaders.IDataLoader import IDataLoader
 
-class JsonDataReader(IDataReader):
-
-	def __init__(this):
-
-		pass
+class JsonDataLoader(IDataLoader):
 
 	def LoadData(this, DataFilePath : str):
 

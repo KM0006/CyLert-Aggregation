@@ -6,3 +6,6 @@ Datasets/
 
 # test files
 test*
+
+# init files
+__init__*

@@ -1,27 +1,37 @@
 
-import Utils.AssertionHandling
-
-from IDataReader import IDataReader
+from ..Utils.AssertionHandling import AssertParameterType
+from ..Preprocessing.DataLoaders.IDataLoader import IDataLoader
+from ..Preprocessing.DataFormatters.IDataFormatter import IDataFormatter
 
 class DataHandler:
 
-	def __init__(this, DefaultDataReader : IDataReader = None ):
+	def __init__(this, DefaultDataLoader : IDataLoader = None, DefaultDataFormatter : IDataFormatter = None):
 		
-		if DefaultDataReader:
+		if DefaultDataLoader:
 		
-			Utils.AssertionHandling.AssertParameterType(DefaultDataReader, "DefaultDataReader", [IDataReader])
+			AssertParameterType(DefaultDataLoader, "DefaultDataLoader", [IDataLoader])
 			
-			this.DefaultDataReader = DefaultDataReader
+			this.DefaultDataLoader = DefaultDataLoader
 
-	def LoadData(this, DataReader : IDataReader = None):
+	def LoadData(this, DataLoader : IDataLoader = None):
 
-		if DataReader:
+		if DataLoader:
 
-			Utils.AssertionHandling.AssertParameterType(DataReader, "DataReader", [IDataReader])
+			AssertParameterType(DataLoader, "DataLoader", [IDataLoader])
 
-			return DataReader.LoadData()
+			return DataLoader.LoadData()
 		
-		return this.DefaultDataReader.LoadData()
+		return this.DefaultDataLoader.LoadData()
+	
+	def PreapareData(this, DataLoader : IDataLoader = None):
+
+		if DataLoader:
+
+			AssertParameterType(DataLoader, "DataLoader", [IDataLoader])
+
+			return DataLoader.LoadData()
+		
+		return this.DefaultDataLoader.LoadData()
 
 	
 
