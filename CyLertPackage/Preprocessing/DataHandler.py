@@ -1,7 +1,7 @@
 
-from ..Utils.AssertionHandling import AssertParameterType
-from ..Preprocessing.DataLoaders.IDataLoader import IDataLoader
-from ..Preprocessing.DataFormatters.IDataFormatter import IDataFormatter
+from Utils.AssertionHandling import AssertParameterType
+from Preprocessing.DataLoaders.IDataLoader import IDataLoader
+from Preprocessing.DataFormatters.IDataFormatter import IDataFormatter
 
 class DataHandler:
 
@@ -9,29 +9,33 @@ class DataHandler:
 		
 		if DefaultDataLoader:
 		
-			AssertParameterType(DefaultDataLoader, "DefaultDataLoader", [IDataLoader])
+			AssertParameterType(DefaultDataLoader, "Default Data Loader", [IDataLoader])
 			
 			this.DefaultDataLoader = DefaultDataLoader
 
-	def LoadData(this, DataLoader : IDataLoader = None):
+		if DefaultDataFormatter:
+		
+			AssertParameterType(DefaultDataFormatter, "Default Data Formatter", [IDataFormatter])
+			
+			this.DefaultDataFormatter = DefaultDataFormatter
+
+	def LoadData(this, DataFilePath : str, DataLoader : IDataLoader = None):
 
 		if DataLoader:
 
 			AssertParameterType(DataLoader, "DataLoader", [IDataLoader])
 
-			return DataLoader.LoadData()
+			return DataLoader.LoadData(DataFilePath)
 		
-		return this.DefaultDataLoader.LoadData()
+		return this.DefaultDataLoader.LoadData(DataFilePath)
 	
-	def PreapareData(this, DataLoader : IDataLoader = None):
+	def FormatData(this, Record : dict, DataFormatter : IDataFormatter = None):
 
-		if DataLoader:
+		if DataFormatter:
 
-			AssertParameterType(DataLoader, "DataLoader", [IDataLoader])
+			AssertParameterType(DataFormatter, "DataFormatter", [IDataFormatter])
 
-			return DataLoader.LoadData()
+			return DataFormatter.FormatData(Record)
 		
-		return this.DefaultDataLoader.LoadData()
-
-	
-
+		return this.DefaultDataFormatter.FormatData(Record)
+		
