@@ -1,7 +1,9 @@
 
 from Utils.AssertionHandling import AssertParameterType
 from Preprocessing.DataLoaders.IDataLoader import IDataLoader
+from Preprocessing.DataLoaders.JsonDataLoader import JsonDataLoader
 from Preprocessing.DataFormatters.IDataFormatter import IDataFormatter
+from Preprocessing.DataFormatters.JsonToStringFormatter import JsonToStringFormatter
 
 class DataHandler:
 
@@ -13,11 +15,19 @@ class DataHandler:
 			
 			this.DefaultDataLoader = DefaultDataLoader
 
+		else:
+
+			this.DefaultDataLoader = JsonDataLoader()
+
 		if DefaultDataFormatter:
 		
 			AssertParameterType(DefaultDataFormatter, "Default Data Formatter", [IDataFormatter])
 			
 			this.DefaultDataFormatter = DefaultDataFormatter
+
+		else:
+
+			this.DefaultDataFormatter = JsonToStringFormatter()
 
 	def LoadData(this, DataFilePath : str, DataLoader : IDataLoader = None):
 
